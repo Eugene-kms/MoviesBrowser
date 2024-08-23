@@ -17,6 +17,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        
+        let accessToken = Bundle.main.object(forInfoDictionaryKey: "TMDBAPIAccessToken") as! String
+        
+        let config = TMDBNetworkConfig(accessToken: accessToken)
+        let networkService = NetworkServiceLive(config: config)
+        let service = MoviesServiceLive(accessToken: accessToken, networkService: networkService)
+        
+        Task {
+            do {
+                let movies = try await service.searchMovies(query: "inter")
+                let interstellar = try await service.fetchMovieDetails(id: 157336)
+                print(movies.count)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

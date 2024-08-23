@@ -2,10 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>TMDBAPIAccessToken</key>
+	<string>eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMjg1NmJmMjhjNTc0NmIyY2NhNDU0ODMyMzQ4MWJjMSIsIm5iZiI6MTcyNDMzMTYyMC4zMTkzMTcsInN1YiI6IjY2YzczMWU5OWE2MTU4M2Y5NTFkMjM2ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.mBDmPWV6Tb3aEYy1-NVdU0a5HQar6jnm0iWbc3wBMsY</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
-		<key>UIApplicationSupportsMultipleScenes</key>
-		<false/>
 		<key>UISceneConfigurations</key>
 		<dict>
 			<key>UIWindowSceneSessionRoleApplication</key>
