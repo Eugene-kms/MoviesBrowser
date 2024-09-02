@@ -1,5 +1,5 @@
 import Foundation
 
 struct MoviesResponse: Codable {
-    let results: [Movie]
+    let results: [MovieDTO]
 }

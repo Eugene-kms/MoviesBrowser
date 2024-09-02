@@ -1,4 +1,5 @@
 import Foundation
+import MBMovies
 
 class TMDBNetworkConfig: NetworkConfig {
     let baseURL: URL = URL(string: "https://api.themoviedb.org/3")!

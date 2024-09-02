@@ -1,38 +1,41 @@
-//
-//  SceneDelegate.swift
-//  MoviesBrowser
-//
-//  Created by Eugene on 22.08.2024.
-//
-
 import UIKit
+import MBMovies
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
         
-        let accessToken = Bundle.main.object(forInfoDictionaryKey: "TMDBAPIAccessToken") as! String
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        window = UIWindow(windowScene: windowScene)
         
-        let config = TMDBNetworkConfig(accessToken: accessToken)
-        let networkService = NetworkServiceLive(config: config)
-        let service = MoviesServiceLive(accessToken: accessToken, networkService: networkService)
+        let vc = MoviesViewController()
+        let navigationController = UINavigationController(rootViewController: vc)
+
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
         
-        Task {
-            do {
-                let movies = try await service.searchMovies(query: "inter")
-                let interstellar = try await service.fetchMovieDetails(id: 157336)
-                print(movies.count)
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
+//        guard let _ = (scene as? UIWindowScene) else { return }
+//        
+//        let accessToken = Bundle.main.object(forInfoDictionaryKey: "TMDBAPIAccessToken") as! String
+//        
+//        let config = TMDBNetworkConfig(accessToken: accessToken)
+//        let networkService = NetworkServiceLive(config: config)
+//        let service = MoviesServiceLive(accessToken: accessToken, networkService: networkService)
+//        
+//        Task {
+//            do {
+//                let movies = try await service.searchMovies(query: "inter")
+//                let interstellar = try await service.fetchMovieDetails(id: 157336)
+//                print(movies.count)
+//            } catch {
+//                print(error.localizedDescription)
+//            }
+//        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -62,7 +65,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
 }
-

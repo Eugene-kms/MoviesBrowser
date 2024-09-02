@@ -1,9 +1,5 @@
 import Foundation
-
-protocol MoviesService {
-    func fetchPopularMovies() async throws -> [Movie]
-    func searchMovies(query: String) async throws -> [Movie]
-}
+import MBMovies
 
 class MoviesServiceLive: MoviesService {
     
@@ -17,9 +13,9 @@ class MoviesServiceLive: MoviesService {
     
     func fetchPopularMovies() async throws -> [Movie] {
         
-        let moviesResponse: MoviesResponse = try await networkService.fetch(path: "/movie/popular")
+        let moviesResponse: MoviesResponse = try await networkService.fetch(path: "/movie/popular", queryItems: [])
         
-        return moviesResponse.results
+        return moviesResponse.results.map { $0.toDomain() }
     }
     
     func searchMovies(query: String) async throws -> [Movie] {
@@ -32,10 +28,10 @@ class MoviesServiceLive: MoviesService {
             queryItems: [queryItem]
         )
         
-        return moviesResponse.results
+        return moviesResponse.results.map { $0.toDomain() }
     }
     
     func fetchMovieDetails(id: Int) async throws -> MovieDetail {
-        try await networkService.fetch(path: "/movie/\(id)")
+        try await networkService.fetch(path: "/movie/\(id)", queryItems: [])
     }
 }
