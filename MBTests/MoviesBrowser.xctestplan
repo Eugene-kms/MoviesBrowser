@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "99B13D56-5EFE-47F3-BA7D-D3B6918D8DEF",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:..\/MoviesUI",
+        "identifier" : "MBMoviesTests",
+        "name" : "MBMoviesTests"
+      }
+    }
+  ],
+  "version" : 1
+}
